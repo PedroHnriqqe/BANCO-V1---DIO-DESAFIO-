@@ -13,7 +13,7 @@ extrato = ""
 numero_saques = 0
 LIMITE_SAQUES = 3
 
-dinheiroConta = 0
+dinheiro_conta = 0
 
 opcao = input(menu)
 
@@ -25,7 +25,7 @@ while True:
         deposito = int(input())
         if deposito > 0:
             print(f"Você inseriu o valor de R${float(deposito)}, obrigado por utilizar nosso banco!")
-            dinheiroConta = dinheiroConta + deposito
+            dinheiro_conta += deposito
             extrato += f"Deposito de R${float(deposito)}\n"
             opcao = input(menu)
             
@@ -35,7 +35,7 @@ while True:
             
     #Opção de Saque
     elif opcao == "s":
-        print(f"Saque - Saldo em conta {float(dinheiroConta)}")
+        print(f"Saque - Saldo em conta {float(dinheiro_conta)}")
         print("Quanto deseja sacar? (Limite de saque R$500)")
         saque = int(input())
         
@@ -50,14 +50,15 @@ while True:
             break
             
         #Verifica se existe o valor em conta!
-        elif dinheiroConta <= 0 :
+        elif dinheiro_conta <= 0 :
             print("Não foi possível realizar o saque, verifique se o valor desejado está disponível em sua conta!")
-            print(f"Valor disponível: {float(dinheiroConta)}")
+            print(f"Valor disponível: {float(dinheiro_conta)}")
+            opcao = input(menu)
             
         #Saque realizado com sucesso!
         else:
-            dinheiroConta = dinheiroConta - saque
-            print(f"Você retirou R${saque}! saldo em conta: R${float(dinheiroConta)}, Obrigado por utilizar nosso banco!")
+            dinheiro_conta -= saque
+            print(f"Você retirou R${saque}! saldo em conta: R${float(dinheiro_conta)}, obrigado por utilizar nosso banco!")
             LIMITE_SAQUES -=1
             numero_saques += 1
             extrato += f"Saque de R${float(saque)}\n"
@@ -68,7 +69,7 @@ while True:
         print("Extrato - Saídas e entradas da conta!")
         print(extrato)
         opcao = input(menu)
-        print(f"Saldo em conta:{float(dinheiroConta)} ")
+        print(f"Saldo em conta:{float(dinheiro_conta)} ")
         
     elif opcao == "q":
         break
